@@ -6,11 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from datetime import datetime
 
-
-
-
-csv_data = '/Users/lewiswcurtisiii/Desktop/Oregon State University/CS432/IndividualProject/Modeling/ccTransactions_prepocessed.csv'
-
+csv_data = '/Users/lewiswcurtisiii/Desktop/CreditCardOptimization/CreditCardOptimization/Working Folder/Models/ccTransactions/ccTransactions_prepocessed_v3.csv'
 
 df = pd.read_csv(csv_data)
 print(df)
@@ -19,38 +15,14 @@ df = df.dropna()
 print(df)
 
 
-# df = pd.read_csv(csv_data)
 
-
-# def convert_amount_to_float(amount_str):
-#     """
-#     Converts amount strings like '$65.50' to float values like 65.5
-#     """
-#     if isinstance(amount_str, str):
-#         # Remove the dollar sign and any whitespace, then convert to float
-#         amount_str = amount_str.replace('$', '').replace(' ', '')
-#         try:
-#             return float(amount_str)
-#         except ValueError:
-#             return None  # Handle any conversion errors
-#     return amount_str  # Return as is if not a string (might already be numeric)
-
-
-# df['Amount'] = df['Amount'].apply(convert_amount_to_float)
-
-# # Save the updated dataframe to CSV
-# df.to_csv('ccTransactions_prepocessed.csv', index=False)
-
-
-
-
-df = df.drop(columns=["Merchant City", "Merchant State", "User", "Card"])
+df = df.drop(columns=["Merchant City", "Merchant State", "User", "Card", "Zip", "Time"])
 
 scaler = StandardScaler()
 df_scaled = scaler.fit_transform(df)
 
 ###Perform K-Means clustering
-num_clusters = 6 #Adjusting number of clusters until a distinct set of clusters is shown
+num_clusters = 4 #Adjusting number of clusters until a distinct set of clusters is shown
 
 kmeans = KMeans(n_clusters=num_clusters, random_state=42) 
 
@@ -105,13 +77,12 @@ print(kmeans.cluster_centers_)
 
 
 new_data = pd.DataFrame({
-    'Year': [2025],
-    'Month': [4],    
-    'Day': [10],     
-    'Time': [720],   
+ 
     'Amount': [85.75],
-    'Zip': [97330],   
-    'MCC': [5812]     
+    'MCC': [5812],
+    'Month': [2],   
+    'Day': [3]     
+  
 })
 
 # Scale the new data using the same scaler
@@ -128,7 +99,7 @@ plt.figure(figsize=(10, 8))
 
 
 feature1 = 'Amount'
-feature2 = 'Time'
+feature2 = 'MCC'
 feature_idx1 = df.columns.get_loc(feature1)
 feature_idx2 = df.columns.get_loc(feature2)
 
