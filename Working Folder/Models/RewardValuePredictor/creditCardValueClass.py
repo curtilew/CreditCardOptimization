@@ -1,12 +1,13 @@
 from creditCardValueCalc import *
 
 class CreditCard:
-    def __init__(self, name, reward_structure, point_value=0.01):
+    def __init__(self, name, reward_structure, cashback_points, point_value=0.01):
         self.name = name
         self.reward_structure = reward_structure  # Dictionary mapping MCC codes/categories to reward rates
         self.point_value = point_value  # Dollar value of each point/mile
+        self.cashback_points = cashback_points
         
-    def calculate_reward(self, amount, mcc):
+    def calculate_reward(self, amount, category):
         """
         Calculate the reward value for a transaction based on this card's reward structure.
         
@@ -79,12 +80,13 @@ class CreditCard:
         
         # Default reward rate (usually 1% or 1x)
         try:
-            for category in self.reward_structure:
-                reward_rate = self.reward_structure.get(category, 0.01)
+            for creditCardCategory in self.reward_structure:
+                if creditCardCategory == category:
+                    reward_rate = self.reward_structure[category]
         except:
             reward_rate = 0
        
-        if reward is points:
+        if self.cashback_points == 'points':
         # Calculate reward value (points or cash back)
             reward_points = amount * reward_rate
 
@@ -2365,3 +2367,173 @@ penfed_power_cash_rewards = CreditCard(
     },
     point_value=0.01  # Cash back value
 )
+
+
+
+# Add point_cashback key to all credit card instances
+# Add this after all credit card definitions
+
+# Chase cards
+chase_freedom_flex.reward_structure['point_cashback'] = 'points'
+chase_sapphire_preferred.reward_structure['point_cashback'] = 'points'
+chase_sapphire_reserve.reward_structure['point_cashback'] = 'points'
+chase_freedom_unlimited.reward_structure['point_cashback'] = 'points'
+chase_ink_business_preferred.reward_structure['point_cashback'] = 'points'
+chase_ink_business_cash.reward_structure['point_cashback'] = 'cashback'
+chase_ink_business_unlimited.reward_structure['point_cashback'] = 'points'
+chase_freedom_student.reward_structure['point_cashback'] = 'points'
+chase_world_of_hyatt.reward_structure['point_cashback'] = 'points'
+chase_ihg_rewards_premier.reward_structure['point_cashback'] = 'points'
+chase_ihg_rewards_traveler.reward_structure['point_cashback'] = 'points'
+chase_marriott_bonvoy_boundless.reward_structure['point_cashback'] = 'points'
+chase_marriott_bonvoy_bold.reward_structure['point_cashback'] = 'points'
+chase_southwest_rapid_rewards_plus.reward_structure['point_cashback'] = 'points'
+chase_southwest_rapid_rewards_premier.reward_structure['point_cashback'] = 'points'
+chase_southwest_rapid_rewards_priority.reward_structure['point_cashback'] = 'points'
+chase_united_explorer.reward_structure['point_cashback'] = 'points'
+chase_united_quest.reward_structure['point_cashback'] = 'points'
+chase_united_club_infinite.reward_structure['point_cashback'] = 'points'
+chase_united_gateway.reward_structure['point_cashback'] = 'points'
+chase_british_airways_visa.reward_structure['point_cashback'] = 'points'
+chase_aer_lingus_visa_signature.reward_structure['point_cashback'] = 'points'
+chase_iberia_visa_signature.reward_structure['point_cashback'] = 'points'
+chase_disney_visa.reward_structure['point_cashback'] = 'points'
+chase_disney_premier_visa.reward_structure['point_cashback'] = 'points'
+chase_amazon_prime_rewards_visa.reward_structure['point_cashback'] = 'points'
+chase_starbucks_rewards_visa.reward_structure['point_cashback'] = 'points'
+chase_aarp_credit_card.reward_structure['point_cashback'] = 'points'
+
+# American Express cards
+amex_gold.reward_structure['point_cashback'] = 'points'
+amex_platinum.reward_structure['point_cashback'] = 'points'
+amex_green.reward_structure['point_cashback'] = 'points'
+amex_blue_cash_preferred.reward_structure['point_cashback'] = 'cashback'
+amex_blue_cash_everyday.reward_structure['point_cashback'] = 'cashback'
+amex_everyday.reward_structure['point_cashback'] = 'points'
+amex_everyday_preferred.reward_structure['point_cashback'] = 'points'
+amex_cash_magnet.reward_structure['point_cashback'] = 'cashback'
+amex_business_gold.reward_structure['point_cashback'] = 'points'
+amex_business_platinum.reward_structure['point_cashback'] = 'points'
+amex_blue_business_plus.reward_structure['point_cashback'] = 'points'
+amex_business_cash.reward_structure['point_cashback'] = 'cashback'
+amex_hilton_honors.reward_structure['point_cashback'] = 'points'
+amex_hilton_honors_surpass.reward_structure['point_cashback'] = 'points'
+amex_hilton_honors_aspire.reward_structure['point_cashback'] = 'points'
+amex_hilton_honors_business.reward_structure['point_cashback'] = 'points'
+amex_marriott_bonvoy_brilliant.reward_structure['point_cashback'] = 'points'
+amex_marriott_bonvoy_business.reward_structure['point_cashback'] = 'points'
+amex_delta_skymiles_blue.reward_structure['point_cashback'] = 'points'
+amex_delta_skymiles_gold.reward_structure['point_cashback'] = 'points'
+amex_delta_skymiles_platinum.reward_structure['point_cashback'] = 'points'
+amex_delta_skymiles_reserve.reward_structure['point_cashback'] = 'points'
+amex_delta_skymiles_gold_business.reward_structure['point_cashback'] = 'points'
+amex_delta_skymiles_platinum_business.reward_structure['point_cashback'] = 'points'
+amex_delta_skymiles_reserve_business.reward_structure['point_cashback'] = 'points'
+amex_amazon_business_prime.reward_structure['point_cashback'] = 'points'
+
+# Discover cards
+discover_it_cashback.reward_structure['point_cashback'] = 'cashback'
+discover_it_miles.reward_structure['point_cashback'] = 'points'
+discover_it_chrome.reward_structure['point_cashback'] = 'points'
+discover_it_student_cashback.reward_structure['point_cashback'] = 'cashback'
+discover_it_student_chrome.reward_structure['point_cashback'] = 'points'
+discover_it_secured.reward_structure['point_cashback'] = 'points'
+discover_it_business.reward_structure['point_cashback'] = 'points'
+discover_it_nhl.reward_structure['point_cashback'] = 'points'
+
+# Capital One cards
+capital_one_venture.reward_structure['point_cashback'] = 'points'
+capital_one_venture_x.reward_structure['point_cashback'] = 'points'
+capital_one_ventureone.reward_structure['point_cashback'] = 'points'
+capital_one_quicksilver.reward_structure['point_cashback'] = 'points'
+capital_one_savor.reward_structure['point_cashback'] = 'points'
+capital_one_savorone.reward_structure['point_cashback'] = 'points'
+capital_one_spark_cash_select.reward_structure['point_cashback'] = 'cashback'
+capital_one_spark_miles.reward_structure['point_cashback'] = 'points'
+capital_one_spark_cash_plus.reward_structure['point_cashback'] = 'cashback'
+capital_one_spark_miles_select.reward_structure['point_cashback'] = 'points'
+capital_one_savorone_student.reward_structure['point_cashback'] = 'points'
+capital_one_quicksilver_student.reward_structure['point_cashback'] = 'points'
+
+# Citi cards
+citi_double_cash.reward_structure['point_cashback'] = 'cashback'
+citi_premier.reward_structure['point_cashback'] = 'points'
+citi_prestige.reward_structure['point_cashback'] = 'points'
+citi_custom_cash.reward_structure['point_cashback'] = 'cashback'
+citi_rewards_plus.reward_structure['point_cashback'] = 'points'
+citi_aadvantage_platinum_select.reward_structure['point_cashback'] = 'points'
+citi_aadvantage_executive.reward_structure['point_cashback'] = 'points'
+citi_aadvantage_mileup.reward_structure['point_cashback'] = 'points'
+citi_aadvantage_business.reward_structure['point_cashback'] = 'points'
+
+# Wells Fargo cards
+wells_fargo_active_cash.reward_structure['point_cashback'] = 'cashback'
+wells_fargo_autograph.reward_structure['point_cashback'] = 'points'
+wells_fargo_business_platinum.reward_structure['point_cashback'] = 'points'
+wells_fargo_cash_wise.reward_structure['point_cashback'] = 'cashback'
+wells_fargo_business_elite.reward_structure['point_cashback'] = 'points'
+
+# US Bank cards
+us_bank_altitude_reserve.reward_structure['point_cashback'] = 'points'
+us_bank_altitude_connect.reward_structure['point_cashback'] = 'points'
+us_bank_altitude_go.reward_structure['point_cashback'] = 'points'
+us_bank_cash_plus.reward_structure['point_cashback'] = 'cashback'
+us_bank_triple_cash_rewards_business.reward_structure['point_cashback'] = 'cashback'
+us_bank_flexperks_gold.reward_structure['point_cashback'] = 'points'
+us_bank_korean_air_skypass.reward_structure['point_cashback'] = 'points'
+us_bank_rei_co_op_mastercard.reward_structure['point_cashback'] = 'points'
+
+# Barclays cards
+barclays_arrival_plus.reward_structure['point_cashback'] = 'points'
+barclays_jetblue_plus.reward_structure['point_cashback'] = 'points'
+barclays_jetblue_card.reward_structure['point_cashback'] = 'points'
+barclays_jetblue_business.reward_structure['point_cashback'] = 'points'
+barclays_aadvantage_aviator_red.reward_structure['point_cashback'] = 'points'
+barclays_aadvantage_aviator_business.reward_structure['point_cashback'] = 'points'
+barclays_wyndham_rewards_earner.reward_structure['point_cashback'] = 'points'
+barclays_wyndham_rewards_earner_plus.reward_structure['point_cashback'] = 'points'
+barclays_wyndham_rewards_earner_business.reward_structure['point_cashback'] = 'points'
+barclays_carnival_world_mastercard.reward_structure['point_cashback'] = 'points'
+barclays_princess_cruises_rewards.reward_structure['point_cashback'] = 'points'
+barclays_holland_america_line_rewards.reward_structure['point_cashback'] = 'points'
+barclays_barnes_and_noble_mastercard.reward_structure['point_cashback'] = 'points'
+
+# Other bank and retail cards
+synchrony_amazon_prime_store_card.reward_structure['point_cashback'] = 'points'
+comenity_wayfair_credit_card.reward_structure['point_cashback'] = 'points'
+pnc_cash_rewards.reward_structure['point_cashback'] = 'cashback'
+pnc_points.reward_structure['point_cashback'] = 'points'
+pnc_business_cash.reward_structure['point_cashback'] = 'cashback'
+td_bank_cash_credit_card.reward_structure['point_cashback'] = 'cashback'
+td_bank_double_up_credit_card.reward_structure['point_cashback'] = 'points'
+hsbc_cash_rewards_mastercard.reward_structure['point_cashback'] = 'cashback'
+bmo_harris_bank_cash_back_mastercard.reward_structure['point_cashback'] = 'cashback'
+citizens_bank_cash_back_plus.reward_structure['point_cashback'] = 'cashback'
+fifth_third_bank_cash_back_card.reward_structure['point_cashback'] = 'cashback'
+mt_bank_visa_signature.reward_structure['point_cashback'] = 'points'
+huntington_voice_credit_card.reward_structure['point_cashback'] = 'points'
+suntrust_cash_rewards_credit_card.reward_structure['point_cashback'] = 'cashback'
+
+# Military-affiliated cards
+usaa_rewards_visa.reward_structure['point_cashback'] = 'points'
+usaa_rewards_american_express.reward_structure['point_cashback'] = 'points'
+navy_federal_cashrewards.reward_structure['point_cashback'] = 'cashback'
+navy_federal_cash_rewards.reward_structure['point_cashback'] = 'cashback'
+penfed_platinum_rewards.reward_structure['point_cashback'] = 'points'
+penfed_gold_visa.reward_structure['point_cashback'] = 'points'
+penfed_power_cash_rewards.reward_structure['point_cashback'] = 'cashback'
+pentagon_federal_platinum_rewards.reward_structure['point_cashback'] = 'points'
+pentagon_federal_gold_visa.reward_structure['point_cashback'] = 'points'
+pentagon_federal_power_cash_rewards.reward_structure['point_cashback'] = 'cashback'
+
+# Bank of America cards
+bank_of_america_travel_rewards.reward_structure['point_cashback'] = 'points'
+bank_of_america_unlimited_cash_rewards.reward_structure['point_cashback'] = 'cashback'
+bank_of_america_premium_rewards.reward_structure['point_cashback'] = 'points'
+bank_of_america_alaska_airlines.reward_structure['point_cashback'] = 'points'
+bank_of_america_spirit_airlines.reward_structure['point_cashback'] = 'points'
+bank_of_america_cash_rewards_students.reward_structure['point_cashback'] = 'cashback'
+bank_of_america_royal_caribbean.reward_structure['point_cashback'] = 'points'
+bank_of_america_world_wildlife_fund.reward_structure['point_cashback'] = 'points'
+bofa_cash_rewards.reward_structure['point_cashback'] = 'cashback'
+
