@@ -65,3 +65,55 @@
   border-radius: 10px;
   margin: 0;
 }
+
+.list-category {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: rgb(225, 101, 101);
+  margin-bottom: 10px;
+  text-align: center;
+  border: 3px solid;
+  border-radius: 5px;
+  background-color: rgb(244, 183, 107);
+}
+
+.list-items li{
+  font-size: 2em;
+  list-style: none;
+  color: rgb(6, 254, 171);
+  text-align: center;
+  margin: 0;
+}
+
+.list-items li:hover {
+  color: black;
+  cursor: pointer;
+}
+
+.counter-container {
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.count-display {
+  font-size: 10em;
+  margin-top: 0;
+  margin-bottom: 50px;
+}
+
+.counter-button {
+  width: 150px;
+  height: 50px;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 0px 5px;
+  background-color: rgb(231, 205, 5);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.counter-button:hover {
+  background-color: bisque;
+}
